@@ -1,7 +1,10 @@
 package com.CherryBlosssom.dashboard.model;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Product {
@@ -11,16 +14,11 @@ public class Product {
     private Long id;
     private String name;
     private String subtitle;
-
-    @Lob
-    private byte[] image; // Alterado para byte[]
-
-    @Lob
+    private String image;
     private String hoverImage;
     private double rating;
     private double price;
 
-    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -37,20 +35,20 @@ public class Product {
         this.name = name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getSubtitle() {
         return subtitle;
     }
 
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 
     public String getHoverImage() {
