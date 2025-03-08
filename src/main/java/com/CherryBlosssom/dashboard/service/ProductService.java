@@ -34,7 +34,7 @@ public class ProductService {
             product.setSubtitle(subtitle);
             product.setPrice(price);
             if (imageBytes != null) {
-                product.setImage(Arrays.toString(imageBytes).getBytes()); // Convertendo para String
+                product.setImage(imageBytes); // Armazena a imagem como byte[]
             }
             return productRepository.save(product);
         } else {

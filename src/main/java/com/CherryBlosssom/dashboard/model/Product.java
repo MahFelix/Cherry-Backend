@@ -1,10 +1,7 @@
 package com.CherryBlosssom.dashboard.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Product {
@@ -14,7 +11,11 @@ public class Product {
     private Long id;
     private String name;
     private String subtitle;
+
+    @Lob
     private byte[] image; // Alterado para byte[]
+
+    @Lob
     private String hoverImage;
     private double rating;
     private double price;
