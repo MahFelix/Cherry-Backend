@@ -33,6 +33,7 @@ public class ProductController {
             @RequestParam("price") double price,
             @RequestParam("image") MultipartFile file) throws IOException {
 
+
         Product product = new Product();
         product.setName(name);
         product.setSubtitle(subtitle);
