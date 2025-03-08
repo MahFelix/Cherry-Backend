@@ -37,7 +37,7 @@ public class ProductController {
         product.setName(name);
         product.setSubtitle(subtitle);
         product.setPrice(price);
-        product.setImage(Arrays.toString(file.getBytes())); // Convertendo para byte[]
+        product.setImage(Arrays.toString(file.getBytes()).getBytes()); // Convertendo para byte[]
 
         Product savedProduct = productService.addProduct(product);
         return ResponseEntity.ok(savedProduct);
