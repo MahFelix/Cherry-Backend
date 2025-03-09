@@ -5,9 +5,11 @@ import com.CherryBlosssom.dashboard.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@CrossOrigin(origins = "https://cherryblossomsite.netlify.app/")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -23,14 +25,29 @@ public class ProductController {
 
     // Adicionar um novo produto
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        return productService.addProduct(product);
+    public Product addProduct(@RequestParam("name") String name,
+                              @RequestParam("subtitle") String subtitle,
+                              @RequestParam("price") double price,
+                              @RequestParam("image") MultipartFile image) {
+        Product product = new Product();
+        product.setName(name);
+        product.setSubtitle(subtitle);
+        product.setPrice(price);
+        return productService.addProduct(product, image);
     }
 
     // Atualizar um produto existente
     @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product product) {
-        return productService.updateProduct(id, product);
+    public Product updateProduct(@PathVariable Long id,
+                                 @RequestParam("name") String name,
+                                 @RequestParam("subtitle") String subtitle,
+                                 @RequestParam("price") double price,
+                                 @RequestParam(value = "image", required = false) MultipartFile image) {
+        Product productDetails = new Product();
+        productDetails.setName(name);
+        productDetails.setSubtitle(subtitle);
+        productDetails.setPrice(price);
+        return productService.updateProduct(id, productDetails, image);
     }
 
     @DeleteMapping("/{id}")
